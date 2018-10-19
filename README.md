@@ -35,9 +35,9 @@ VRMをロードする時のUIアセットです
 
 画面中央下部のボタンをクリックするとVRMをロードする。
 
-![LoadingUI](images/Doc/LoaderUI_ss01.png)
+![LoadingUI](Images/Doc/LoaderUI_ss01.png)
 
-![LoadingUI](images/Doc/LoaderUI_ss02.png)
+![LoadingUI](Images/Doc/LoaderUI_ss02.png)
 
 #### ExampleLoaderLegacy
 

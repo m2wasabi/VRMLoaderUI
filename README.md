@@ -5,6 +5,10 @@ VRM Loader UI
 
 VRMをロードする時のUIアセットです
 
+## Download
+
+[Release Page](https://github.com/m2wasabi/VRMLoaderUI/releases) からunitypackageをダウンロードしてください。
+
 ## Usage
 
 基本的な呼び出し方は以下です。

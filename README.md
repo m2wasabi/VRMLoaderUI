@@ -33,9 +33,15 @@ VRMをロードする時のUIアセットです
 
 ### Exampleの説明
 
+画面中央下部のボタンをクリックするとVRMをロードする。
+
+![LoadingUI](images/Doc/LoaderUI_ss01.png)
+
+![LoadingUI](images/Doc/LoaderUI_ss02.png)
+
 #### ExampleLoaderLegacy
 
-Unity 5.6.3.p1 のUniEx無しで動くサンプル
+Unity 5.6.3.p1 のUniRx無しで動くサンプル
 
 必要ライブラリ
 
@@ -43,7 +49,7 @@ Unity 5.6.3.p1 のUniEx無しで動くサンプル
 
 #### ExampleLoader
 
-Unity2018.1 .NET4.6 のUniEx使用で動くサンプル
+Unity2018.1 .NET4.6 のUniRx使用で動くサンプル
 
 必要ライブラリ
 

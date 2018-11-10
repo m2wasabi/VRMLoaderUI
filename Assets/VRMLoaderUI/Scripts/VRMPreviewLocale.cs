@@ -8,5 +8,10 @@ namespace VRMLoader
         void Start () {
             
         }
+
+        public void SetLocale()
+        {
+            
+        }
     }
 }

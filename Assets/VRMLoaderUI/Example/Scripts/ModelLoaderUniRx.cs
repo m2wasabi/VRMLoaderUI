@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using VRM;
 #if UNITY_2017_1_OR_NEWER && NET_4_6
 using UniRx;
@@ -22,6 +23,9 @@ namespace VRMLoader
 
         [SerializeField]
         RuntimeAnimatorController m_animationController;
+
+        [SerializeField]
+        Dropdown m_language;
 
         UniHumanoid.HumanPoseTransfer m_target;
         VRMBlendShapeProxy m_blendShape;
@@ -65,6 +69,11 @@ namespace VRMLoader
 
             // ファイル読み込みモーダルウィンドウの呼び出し
             GameObject modalObject = Instantiate(m_modalWindowPrefab, m_canvas.transform) as GameObject;
+
+            // 言語設定を取得・反映する
+            var modalLocale = modalObject.GetComponentInChildren<VRMPreviewLocale>();
+            modalLocale.SetLocale(m_language.captionText.text);
+
             var modalUI = modalObject.GetComponentInChildren<VRMPreviewUI>();
             modalUI.setMeta(meta);
 

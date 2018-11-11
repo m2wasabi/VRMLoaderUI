@@ -52,10 +52,8 @@ namespace VRMLoader
             var path = Application.streamingAssetsPath + "/VRMLoaderUI/i18n/" + lang + ".json";
             if (!File.Exists(path)) return;
             var json = File.ReadAllText(path);
-            Debug.Log(json);
             _localeText = JsonUtility.FromJson<LocaleText>(json);
             
-            Debug.Log(_localeText.labels.DistributionLicense);
             UpdateText(_localeText);
         }
 

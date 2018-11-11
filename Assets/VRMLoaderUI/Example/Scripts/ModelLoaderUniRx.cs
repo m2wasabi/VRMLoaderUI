@@ -74,6 +74,7 @@ namespace VRMLoader
             var modalLocale = modalObject.GetComponentInChildren<VRMPreviewLocale>();
             modalLocale.SetLocale(m_language.captionText.text);
 
+            // meta情報の反映
             var modalUI = modalObject.GetComponentInChildren<VRMPreviewUI>();
             modalUI.setMeta(meta);
 

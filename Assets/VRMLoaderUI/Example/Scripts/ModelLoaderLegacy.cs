@@ -66,12 +66,14 @@ namespace VRMLoader
 
             // ファイル読み込みモーダルウィンドウの呼び出し
             GameObject modalObject = Instantiate(m_modalWindowPrefab, m_canvas.transform) as GameObject;
-            var modalUI = modalObject.GetComponentInChildren<VRMPreviewUI>();
-            modalUI.setMeta(meta);
 
             // 言語設定を取得・反映する
             var modalLocale = modalObject.GetComponentInChildren<VRMPreviewLocale>();
             modalLocale.SetLocale(m_language.captionText.text);
+
+            // meta情報の反映
+            var modalUI = modalObject.GetComponentInChildren<VRMPreviewUI>();
+            modalUI.setMeta(meta);
 
             // ファイルを開くことの許可
             // ToDo: ファイルの読み込み許可を制御する場合はここで

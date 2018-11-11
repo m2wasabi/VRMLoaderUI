@@ -102,9 +102,9 @@ namespace VRMLoader
         [SerializeField]
         TextFields m_texts;
 
-        static readonly string[] m_textAllowedUser = {"作者のみ", "許可された人限定", "全員に許可"};
-        static readonly string[] m_textUsage = {"不許可", "許可"};
-        static readonly string[] m_textLicenseType = {
+        static string[] m_textAllowedUser = {"作者のみ", "許可された人限定", "全員に許可"};
+        static string[] m_textUsage = {"不許可", "許可"};
+        static string[] m_textLicenseType = {
             "再配布禁止", 
             "著作権放棄(CC0)", 
             "表示 (CC BY 4.0)", 
@@ -118,6 +118,12 @@ namespace VRMLoader
         
         public Button m_ok, m_cancel;
 
+        public void SetSelectionText(VRMPreviewLocale.Selections selections)
+        {
+            m_textAllowedUser = selections.PermissionAct;
+            m_textUsage = selections.PermissionUsage;
+            m_textLicenseType = selections.LicenseType;
+        }
         public void setMeta(VRMMetaObject meta)
         {
             m_texts.UpdateMeta(meta);

@@ -78,6 +78,9 @@ namespace VRMLoader
 
             transform.Find("LoadConfirmPanel/BtnLoad/Text").GetComponent<Text>().text = localeText.buttons.BtnLoad;
             transform.Find("LoadConfirmPanel/BtnCancel/Text").GetComponent<Text>().text = localeText.buttons.BtnCancel;
+
+            var ui = gameObject.GetComponent<VRMPreviewUI>();
+            ui.SetSelectionText(localeText.selections);
         }
     }
 }

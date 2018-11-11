@@ -1,43 +1,59 @@
 # VRMLoaderUI
 VRM Loader UI
 
+Languages( [日本語版](README_ja.md) )
+
 ## What is this?
 
-VRMをロードする時のUIアセットです
+UI asset on loading VRM.
 
 ## Download
 
-[Release Page](https://github.com/m2wasabi/VRMLoaderUI/releases) からunitypackageをダウンロードしてください。
+Download UnityPackages from [Release Page](https://github.com/m2wasabi/VRMLoaderUI/releases).
 
 ## Usage
 
-基本的な呼び出し方は以下です。
+Basic usase is below.
 
 ```csharp
+    // define UI canvas
+    [SerializeField]
+    Canvas m_canvas;
+
+    // define VRMLoaderUI/Prefabs/LoadConfirmModal
+    [SerializeField]
+    GameObject m_modalWindowPrefab;
+
+
     byte[] bytes = File.ReadAllBytes(path);
 
     var context = new VRMImporterContext();
     context.ParseGlb(bytes);
     var meta = context.ReadMeta(true);
 
-    // ファイル読み込みモーダルウィンドウの呼び出し
+    // instantinate UI
     GameObject modalObject = Instantiate(m_modalWindowPrefab, m_canvas.transform) as GameObject;
-    var modalUI = modalObject.GetComponent<VRMPreviewUI>();
+
+    // determine language
+    var modalLocale = modalObject.GetComponentInChildren<VRMPreviewLocale>();
+    modalLocale.SetLocale(m_language.captionText.text);
+
+    // input VRM meta information to UI
+    var modalUI = modalObject.GetComponentInChildren<VRMPreviewUI>();
     modalUI.setMeta(meta);
 
-    // ファイルを開くことの許可
-    // ToDo: ファイルの読み込み許可を制御する場合はここで
+    // Permission of file open
     modalUI.setLoadable(true);
 
-    // ロードイベントの追加
+    // define callback on load completed
     modalUI.m_ok.onClick.AddListener(ModelLoad);
 ```
 
-詳しい使い方はExampleを参照してください。
+Full source exists Examples package.
 
-### Exampleの説明
+### Examples
 
-画面中央下部のボタンをクリックするとVRMをロードする。
+Click "Load VRM" button and show modal UI.
 
 ![LoadingUI](Images/Doc/LoaderUI_ss01.png)
 
@@ -45,34 +61,36 @@ VRMをロードする時のUIアセットです
 
 #### ExampleLoaderLegacy
 
-Unity 5.6.3.p1 のUniRx無しで動くサンプル
+Example runs Unity 5.6.3.p1 without UniRx
 
-必要ライブラリ
+Depends on
 
 + [UniVRM](https://github.com/dwango/UniVRM/releases)
 
 #### ExampleLoader
 
-Unity2018.1 .NET4.6 のUniRx使用で動くサンプル
+Example with Unity2018.1 .NET4.6 and using UniRx
 
-必要ライブラリ
+Depends on
 
 + [UniVRM](https://github.com/dwango/UniVRM/releases)
 + [UniRx](https://github.com/neuecc/UniRx/releases)
 
-### デザインのカスタマイズ
+### Internationarization languages
 
-ウィンドウの背景や文字色など、心理的にカスタマイズしやすいように、デフォルトUIになっています。
-自由に調整して自分アプリに合ったUIにしましょう。
+Default language can choose Japanese(ja) and English(en).  
+When you add languages, copy and edit `/Assets/StreamingAssets/VRMLoaderUI/i18n/*.json` .  
 
-アイコンの[アートワーク](Images/VRM_permissions.ai)もIllustrator形式で添付しているので、自由に変更して頂いて構いません。
+### Customizing design
 
-## ライセンス
+This asset uses default UI styles.
+Edit and personalize UI for your contents.
 
-ソースコード: MITライセンス  
-アートワーク: CC0  
+[Icon artwork](Images/VRM_permissions.ai) is destributing CC0 and use free.
 
-## 今後の予定
+Cheers!
 
-+ 国際化対応
-+ テーマサンプルの作成(優先度低)
+## Licenses
+
+Source: MIT
+Artwork: CC0  

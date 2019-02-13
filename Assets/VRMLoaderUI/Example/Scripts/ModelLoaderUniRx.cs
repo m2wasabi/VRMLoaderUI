@@ -43,7 +43,7 @@ namespace VRMLoader
             path = "file://" + path;
 #endif
 #elif UNITY_STANDALONE_WIN
-            var path = FileDialogForWindows.FileDialog("open VRM", ".vrm");
+            var path = VRM.Samples.FileDialogForWindows.FileDialog("open VRM", ".vrm");
             path = "file:///" + path;
 #else
             var path = Application.dataPath + "/default.vrm";

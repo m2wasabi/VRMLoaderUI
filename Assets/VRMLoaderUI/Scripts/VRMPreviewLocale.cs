@@ -43,10 +43,27 @@ namespace VRMLoader
         }
 
         private LocaleText _localeText;
-        void Start () {
-            
+#if UNITY_WEBGL
+        public void SetLocale(string lang = "en")
+        {
+            var path = Application.streamingAssetsPath + "/VRMLoaderUI/i18n/" + lang + ".json";
+            StartCoroutine(GetJson(path, callback =>
+            {
+                var json = System.Text.Encoding.UTF8.GetString(callback, 3, callback.Length - 3);
+                _localeText = JsonUtility.FromJson<LocaleText>(json);
+                UpdateText(_localeText);
+            }));
         }
 
+        IEnumerator GetJson(string path, System.Action<byte[]> callback)
+        {
+            using(var uwr = UnityEngine.Networking.UnityWebRequest.Get(path))
+            {
+                yield return uwr.SendWebRequest();
+                callback.Invoke(uwr.downloadHandler.data);
+            }
+        }
+#else
         public void SetLocale(string lang = "en")
         {
             var path = Application.streamingAssetsPath + "/VRMLoaderUI/i18n/" + lang + ".json";
@@ -56,7 +73,7 @@ namespace VRMLoader
             
             UpdateText(_localeText);
         }
-
+#endif
         private void UpdateText(LocaleText localeText)
         {
             var labelsParent = transform.Find("LoadConfirmPanel/Label");
